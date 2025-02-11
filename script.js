@@ -10,6 +10,7 @@ function createGrid(boxes){
         box.style.height = `${boxSize}px`;
         container.appendChild(box);
     }
+    changeColor();
 }
 createGrid(boxes);
 const changeSizeBtn = document.querySelector(".changeSize");
@@ -22,6 +23,7 @@ changeSizeBtn.addEventListener("click", () =>{
         boxes = size;
         deleteBoxes();
         createGrid(boxes);
+        changeColor();
     }
     else{
         alert("enter a valid size");
@@ -44,5 +46,17 @@ function clearBoxes(){
     const boxes = document.querySelectorAll('.box');
     boxes.forEach(box =>{
         box.style.background = "white";
+    });
+    changeColor();
+}
+
+function changeColor(){
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box =>{
+        box.addEventListener("mouseover",()=>{
+            console.log("hovering");
+            box.style.background = 'black';
+        });
+
     });
 }
