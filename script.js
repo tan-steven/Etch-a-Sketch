@@ -46,17 +46,47 @@ function clearBoxes(){
     const boxes = document.querySelectorAll('.box');
     boxes.forEach(box =>{
         box.style.background = "white";
+        box.style.opacity = 1;
     });
     changeColor();
 }
 
 function changeColor(){
     const boxes = document.querySelectorAll('.box');
-    boxes.forEach(box =>{
-        box.addEventListener("mouseover",()=>{
-            console.log("hovering");
-            box.style.background = 'black';
-        });
-
+    const randomColors = document.querySelector('.randomColors');
+    let toggle = false;
+    randomColors.addEventListener('click', ()=>{
+        if(toggle == false){
+            toggle = true;
+        }
+        else{
+            toggle == false;
+        }
     });
+    boxes.forEach(box =>{
+        let shade = 0;
+        box.addEventListener("mouseover",(e)=>{;
+            if (toggle == true){
+                shade += .1
+                e.target.style.background = getRandom();
+                e.target.style.opacity = shade;
+                console.log(e.target);
+            }
+            else{
+                shade += .1
+                e.target.style.background = 'black';
+                e.target.style.opacity = shade;
+                console.log(e.target);
+            }
+        });
+    });
+}
+
+
+
+function getRandom(){
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
 }
